@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmgwufmbieax0"]
+
+[ext_resource type="Texture2D" uid="uid://cedyvsif6b12h" path="res://Assets/battle_stages/grass.png" id="1_lpa82"]
+[ext_resource type="Texture2D" uid="uid://58oy062uit05" path="res://Assets/Animons/Pikachu.png" id="2_7p2pm"]
+[ext_resource type="FontFile" uid="uid://dntgfcj0yuc4o" path="res://Assets/Font/NESCyrillic.ttf" id="3_7231r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eabiw"]
+bg_color = Color(0.239216, 0.705882, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhpoe"]
+bg_color = Color(0.756863, 0, 0.0823529, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1204.0
+offset_bottom = 818.0
+texture = ExtResource("1_lpa82")
+expand_mode = 1
+
+[node name="EnemyContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="enemy_image" type="TextureRect" parent="EnemyContainer"]
+layout_mode = 2
+texture = ExtResource("2_7p2pm")
+stretch_mode = 3
+
+[node name="healthBar" type="ProgressBar" parent="EnemyContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_eabiw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mhpoe")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="EnemyContainer/healthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_7231r")
+text = "hp: 50/100"
+horizontal_alignment = 1
+vertical_alignment = 1

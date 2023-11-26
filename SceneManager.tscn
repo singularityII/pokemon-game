@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://cej267hbsqwhc"]
+
+[ext_resource type="PackedScene" uid="uid://bg3qcfdi4tpfj" path="res://Town.tscn" id="1"]
+[ext_resource type="Script" path="res://SceneManager.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://b84vueykmmgq0" path="res://Menu.tscn" id="3"]
+
+[sub_resource type="Animation" id="1"]
+resource_name = "FadeToBlack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished_fading"
+}]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "FadeToNormal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd12g"]
+_data = {
+"FadeToBlack": SubResource("1"),
+"FadeToNormal": SubResource("2")
+}
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("2")
+
+[node name="CurrentScene" type="Node2D" parent="."]
+
+[node name="Town" parent="CurrentScene" instance=ExtResource("1")]
+
+[node name="Menu" parent="." instance=ExtResource("3")]
+
+[node name="ScreenTransition" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ScreenTransition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenTransition"]
+libraries = {
+"": SubResource("AnimationLibrary_nd12g")
+}

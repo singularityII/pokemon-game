@@ -1,0 +1,16 @@
+res://SceneManager.tscn
+res://LandingDustEffect.gd
+res://Flower.gd
+res://GrassStepEffect.gd
+res://House.tscn
+res://Town.tscn
+res://Tree.tscn
+res://Player.tscn
+res://OverworldTileMap.tscn
+res://Menu.tscn
+res://ash.tscn
+res://ash.gd
+res://battle.tscn
+res://Player.gd
+res://TallGrass.gd
+res://Door.gd
