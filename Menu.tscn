@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Menu.gd" id="4"]
 
 [sub_resource type="FontFile" id="1"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 fallbacks = Array[Font]([ExtResource("2")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
@@ -25,10 +28,9 @@ offset_bottom = 40.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Control"]
 layout_mode = 0
-offset_left = 177.0
-offset_top = 1.0
-offset_right = 252.0
-offset_bottom = 98.0
+offset_left = 389.0
+offset_right = 464.0
+offset_bottom = 97.0
 texture = ExtResource("1")
 patch_margin_left = 6
 patch_margin_top = 6

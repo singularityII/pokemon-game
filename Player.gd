@@ -125,7 +125,7 @@ func move(delta):
 			is_moving = false
 			stop_input = true
 			$AnimationPlayer.play("Disappear")
-			#$Camera2D.clear_current()
+			$Camera2D.clear_current()
 		else:
 			position = initial_position + (input_direction * TILE_SIZE * percent_moved_to_next_tile)
 		

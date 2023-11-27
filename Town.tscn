@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bg3qcfdi4tpfj"]
+[gd_scene load_steps=19 format=3 uid="uid://bg3qcfdi4tpfj"]
 
 [ext_resource type="PackedScene" uid="uid://bcuxc6w4on2dh" path="res://Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dmeacnyb3uxml" path="res://OverworldTileMap.tscn" id="2"]
@@ -8,9 +8,8 @@
 [ext_resource type="PackedScene" path="res://Flower.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://TallGrass.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://dnjy1jnlv1abd" path="res://Assets/Buildings/oaks_lab.png" id="7"]
-[ext_resource type="PackedScene" path="res://Door.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://da13ayusmetn3" path="res://Door.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://cruflvua5m5gv" path="res://House.tscn" id="9"]
-[ext_resource type="Texture2D" uid="uid://ti2cnlvxohbu" path="res://Assets/Buildings/Door Animations/oaks_lab.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://bf0ag7cw8y5cn" path="res://ash.tscn" id="12_fs0xe"]
 
 [sub_resource type="AtlasTexture" id="1"]
@@ -57,83 +56,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_re3aj"]
-size = Vector2(110, 64)
-
-[sub_resource type="Animation" id="Animation_41ciw"]
-resource_name = "CloseDoor"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 1, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"door_closed"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_dtkha"]
-resource_name = "OpenDoor"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rkjqs"]
-_data = {
-"CloseDoor": SubResource("Animation_41ciw"),
-"OpenDoor": SubResource("Animation_dtkha")
-}
+size = Vector2(110, 72)
 
 [node name="Town" type="Node2D"]
 
@@ -311,7 +234,7 @@ position = Vector2(16, -224)
 
 [node name="Player" parent="Node2D" instance=ExtResource("1")]
 z_index = 1
-position = Vector2(-80, 80)
+position = Vector2(-112, 80)
 walk_speed = 10.0
 
 [node name="Trees" type="Node2D" parent="Node2D"]
@@ -1105,18 +1028,16 @@ position = Vector2(368, -352)
 position = Vector2(368, -400)
 
 [node name="House" parent="Node2D" instance=ExtResource("9")]
-position = Vector2(-80, 0)
+position = Vector2(-88, 0)
 
 [node name="Door" parent="Node2D/House" instance=ExtResource("8")]
 position = Vector2(16, 64)
 next_scene_path = "res://PlayerHomeFloor1.tscn"
-spawn_location = Vector2(64, 128)
-spawn_direction = Vector2(0, -1)
 
 [node name="RivalHouse" parent="Node2D" instance=ExtResource("9")]
 position = Vector2(176, 0)
 
-[node name="Door" parent="Node2D/RivalHouse" instance=ExtResource("8")]
+[node name="Door1" parent="Node2D/RivalHouse" instance=ExtResource("8")]
 position = Vector2(16, 64)
 next_scene_path = "res://RivalHomeFloor.tscn"
 spawn_location = Vector2(64, 128)
@@ -1129,25 +1050,16 @@ position = Vector2(176, 128)
 texture = ExtResource("7")
 
 [node name="CollisionShape2D" parent="Node2D/OaksLab" index="1"]
-position = Vector2(56, 40)
+position = Vector2(56, 44)
 shape = SubResource("RectangleShape2D_re3aj")
 
-[node name="Door" parent="Node2D/OaksLab" instance=ExtResource("8")]
+[node name="Door2" parent="Node2D/OaksLab" instance=ExtResource("8")]
 position = Vector2(48, 64)
 next_scene_path = "res://OaksLab.tscn"
 spawn_location = Vector2(64, 192)
 spawn_direction = Vector2(0, -1)
 
-[node name="Sprite2D" parent="Node2D/OaksLab/Door" index="0"]
-texture = ExtResource("10")
-
-[node name="AnimationPlayer" parent="Node2D/OaksLab/Door" index="1"]
-libraries = {
-"": SubResource("AnimationLibrary_rkjqs")
-}
-
 [node name="Ash" parent="Node2D" instance=ExtResource("12_fs0xe")]
 position = Vector2(168, 64)
 
 [editable path="Node2D/OaksLab"]
-[editable path="Node2D/OaksLab/Door"]

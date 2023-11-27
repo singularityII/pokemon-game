@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c7snkw1jarx61" path="res://Assets/Buildings/house1.png" id="1"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(78, 75)
+size = Vector2(78, 72)
 
 [node name="House" type="StaticBody2D"]
 collision_layer = 2
@@ -14,5 +14,5 @@ texture = ExtResource("1")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(40, 45.5)
+position = Vector2(40, 44)
 shape = SubResource("1")

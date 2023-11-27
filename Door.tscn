@@ -1,99 +1,106 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://da13ayusmetn3"]
 
-[ext_resource path="res://Assets/Buildings/Door Animations/house1.png" type="Texture2D" id=1]
-[ext_resource path="res://Door.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://de51m0u46gwsf" path="res://Assets/Buildings/Door Animations/house1.png" id="1"]
+[ext_resource type="Script" path="res://Door.gd" id="2"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "CloseDoor"
 length = 0.3
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ 2, 1, 0 ]
+"values": [2, 1, 0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.3 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
 }
 tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0.3 ),
-"transitions": PackedFloat32Array( 1 ),
-"values": [ {
-"args": [  ],
-"method": "door_closed"
-} ]
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"door_closed"
+}]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "OpenDoor"
 length = 0.3
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [0, 1, 2]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
-size = Vector2( 8, 8 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bm0gg"]
+_data = {
+"CloseDoor": SubResource("1"),
+"OpenDoor": SubResource("2")
+}
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(16, 16)
 
 [node name="Door" type="Area2D"]
 collision_layer = 8
 collision_mask = 0
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 centered = false
 vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/CloseDoor = SubResource( 1 )
-anims/OpenDoor = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_bm0gg")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 8, 8 )
-shape = SubResource( 3 )
+position = Vector2(8, 8)
+shape = SubResource("3")
 
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
